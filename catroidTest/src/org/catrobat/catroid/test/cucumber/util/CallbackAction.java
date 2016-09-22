@@ -1,6 +1,6 @@
 /*
  * Catroid: An on-device visual programming system for Android devices
- * Copyright (C) 2010-2016 The Catrobat Team
+ * Copyright (C) 2010-2015 The Catrobat Team
  * (<http://developer.catrobat.org/credits>)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -20,32 +20,20 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+package org.catrobat.catroid.test.cucumber.util;
 
-repositories{
-    mavenCentral()
-}
+import com.badlogic.gdx.scenes.scene2d.Action;
 
-apply plugin: 'java'
+public final class CallbackAction extends Action {
+	private final transient CallbackBrick.BrickCallback callback;
 
-dependencies {
-    testCompile files( project(":").buildDir.getPath() + '/intermediates/classes/debug' )
-    testCompile 'junit:junit:4.12'
+	public CallbackAction(CallbackBrick.BrickCallback callback) {
+		this.callback = callback;
+	}
 
-}
-
-sourceSets {
-    main {
-        test {
-            java.srcDir 'src'
-        }
-        resources {
-            srcDir 'res'
-        }
-    }
-}
-
-test {
-    testLogging {
-        events "standardOut", "standardError", "failed", "passed", "skipped"
-    }
+	@Override
+	public boolean act(float delta) {
+		callback.onCallback();
+		return true;
+	}
 }

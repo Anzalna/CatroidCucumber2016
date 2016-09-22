@@ -1,6 +1,6 @@
 /*
  * Catroid: An on-device visual programming system for Android devices
- * Copyright (C) 2010-2016 The Catrobat Team
+ * Copyright (C) 2010-2015 The Catrobat Team
  * (<http://developer.catrobat.org/credits>)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -20,32 +20,29 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+package org.catrobat.catroid.test.cucumber.util;
 
-repositories{
-    mavenCentral()
-}
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 
-apply plugin: 'java'
+import org.catrobat.catroid.content.Sprite;
+import org.catrobat.catroid.content.bricks.ShowBrick;
 
-dependencies {
-    testCompile files( project(":").buildDir.getPath() + '/intermediates/classes/debug' )
-    testCompile 'junit:junit:4.12'
+import java.util.List;
 
-}
+public final class CallbackBrick extends ShowBrick {
+	private final transient BrickCallback callback;
+	private Sprite sprite;
+	public CallbackBrick(Sprite sprite, BrickCallback callback) {
+		CallbackBrick.this.sprite = sprite;
+		this.callback = callback;
+	}
 
-sourceSets {
-    main {
-        test {
-            java.srcDir 'src'
-        }
-        resources {
-            srcDir 'res'
-        }
-    }
-}
+	public List<SequenceAction> addActionToSequence(SequenceAction sequence) {
+		sequence.addAction(new CallbackAction(callback));
+		return null;
+	}
 
-test {
-    testLogging {
-        events "standardOut", "standardError", "failed", "passed", "skipped"
-    }
+	public interface BrickCallback {
+		void onCallback();
+	}
 }

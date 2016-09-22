@@ -36,6 +36,11 @@ public class BroadcastScript extends Script implements BroadcastMessage {
 		setBroadcastMessage(broadcastMessage);
 	}
 
+	public BroadcastScript(Sprite sprite, String message) {
+
+	}
+
+
 	@Override
 	public ScriptBrick getScriptBrick() {
 		if (brick == null) {

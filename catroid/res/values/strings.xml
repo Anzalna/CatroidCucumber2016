@@ -1210,5 +1210,8 @@
         and download it.
         You can also download your program as standalone app.</string>
      <string name="progress_upload_dialog_show_program">Show program</string>
+    <string name="default_project_sprites_mole_name">Mole name</string>
+
+
     <!--  -->
 </resources>

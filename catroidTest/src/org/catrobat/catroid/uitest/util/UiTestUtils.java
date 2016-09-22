@@ -1359,6 +1359,24 @@ public final class UiTestUtils {
 		projectManager.setCurrentSprite(firstSprite);
 		projectManager.setCurrentScript(testScript);
 	}
+	public static void createBroadcastProject() {
+		Project project = new Project(null, DEFAULT_TEST_PROJECT_NAME);
+		Sprite firstSprite = new Sprite("cat");
+		Script testScript = new StartScript();
+		BroadcastBrick brick = new BroadcastBrick("hello");
+		testScript.addBrick(brick);
+		Script secondScript = new BroadcastScript("hello");
+		secondScript.addBrick(new WaitBrick(100));
+		firstSprite.addScript(testScript);
+		firstSprite.addScript(secondScript);
+		project.addSprite(firstSprite);
+
+		projectManager.setFileChecksumContainer(new FileChecksumContainer());
+		projectManager.setProject(project);
+		projectManager.setCurrentSprite(firstSprite);
+		projectManager.setCurrentScript(testScript);
+	}
+
 
 	public static void createEmptyProjectWithoutScript() {
 		Project project = new Project(null, PROJECTNAME3);

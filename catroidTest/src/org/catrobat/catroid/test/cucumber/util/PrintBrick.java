@@ -22,6 +22,10 @@
  */
 package org.catrobat.catroid.test.cucumber.util;
 
+import android.content.Context;
+import android.view.View;
+import android.widget.BaseAdapter;
+
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 
@@ -38,6 +42,7 @@ public class PrintBrick extends BrickBaseType {
 	private static final long serialVersionUID = 1L;
 	private String text;
 	private OutputStream outputStream;
+	Sprite sprite;
 
 	public PrintBrick(Sprite sprite, String text) {
 		this.outputStream = System.//
@@ -61,6 +66,26 @@ public class PrintBrick extends BrickBaseType {
 	}
 
 	@Override
+	public View getViewWithAlpha(int alphaValue) {
+		return null;
+	}
+
+	@Override
+	public View getView(Context context, int brickId, BaseAdapter adapter) {
+		return null;
+	}
+
+	@Override
+	public View getPrototypeView(Context context) {
+		return null;
+	}
+
+	@Override
+	public List<SequenceAction> addActionToSequence(Sprite sprite, SequenceAction sequence) {
+		return null;
+	}
+
+
 	public Brick copyBrickForSprite(Sprite sprite, Script script) {
 		PrintBrick copyBrick = (PrintBrick) clone();
 		copyBrick.sprite = sprite;
@@ -74,7 +99,7 @@ public class PrintBrick extends BrickBaseType {
 		return brick;
 	}
 
-	@Override
+
 	public List<SequenceAction> addActionToSequence(SequenceAction sequence) {
 		sequence.addAction(new PrintAction(text, outputStream));
 		return null;
@@ -95,4 +120,9 @@ public class PrintBrick extends BrickBaseType {
 			return true;
 		}
 	}
+	@Override
+	public String toString() {
+		return this.text;
+	}
 }
+

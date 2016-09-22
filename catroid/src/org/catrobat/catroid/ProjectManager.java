@@ -660,6 +660,10 @@ public final class ProjectManager implements OnLoadProjectCompleteListener, OnCh
 		ProjectManager.getInstance().showUploadProjectDialog(fragmentActivity.getFragmentManager(), null);
 	}
 
+	public void initializeNewProject(String cucumber, Context context, boolean b) {
+
+	}
+
 	private class SaveProjectAsynchronousTask extends AsyncTask<Void, Void, Void> {
 
 		@Override
